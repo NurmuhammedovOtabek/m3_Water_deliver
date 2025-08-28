@@ -3,7 +3,7 @@ const pool = require("../config/db")
 const createRegion = async(req,res)=>{
     try{
         const {name} = req.body
-        const creatData = await pool.query(`insert into region (name) values ($1) returning *`, [name])
+        const creatData = await pool.query(`insert into dictric (name) values ($1) returning *`, [name])
         res.status(201).json({
             statusCode: 201,
             message: "Data added",
@@ -20,7 +20,7 @@ const createRegion = async(req,res)=>{
 
 const getRegion = async(req,res)=>{
     try{
-        const getData = await pool.query(`select * from region`)
+        const getData = await pool.query(`select * from dictric`)
         res.status(200).json({
             statusCode: 200,
             message: "geting Succsessfully",
@@ -38,7 +38,7 @@ const getRegion = async(req,res)=>{
 const getById = async(req,res)=>{
     try{
         const id = req.params.id
-        const GetOne = await pool.query(`select * from region where id = $1`, [id])
+        const GetOne = await pool.query(`select * from dictric where id = $1`, [id])
         res.status(200).json({
             statusCode: 200,
             message: "geting Succsessfully",
@@ -56,7 +56,7 @@ const getById = async(req,res)=>{
 const filtrOneR = async (req,res)=>{
     try{
         const {name} = req.query
-        let dbQuery = "select * from region where true "
+        let dbQuery = "select * from dictric where true "
         let values = []
 
         if(name) {
@@ -83,7 +83,7 @@ const updateRegion = async (req,res)=>{
     try{
         const id = req.params.id
         const {name} = req.body 
-        const updateData = await pool.query(`update region set name = $1 where id = $2 returning *`, [name,id])
+        const updateData = await pool.query(`update dictric set name = $1 where id = $2 returning *`, [name,id])
         res.status(200).json({
             statusCode: 200,
             message: "update Succsessfully",
@@ -102,7 +102,7 @@ const updateRegion = async (req,res)=>{
 const delREgion = async (req,res)=>{
     try{
         const id = req.params.id
-        const delDAta = await pool.query(`delete from region where id = $1`, [id])
+        const delDAta = await pool.query(`delete from dictric where id = $1`, [id])
         res.status(200).json({
             statusCode: 200,
             message: "Region deleted",

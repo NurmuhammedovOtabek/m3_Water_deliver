@@ -1,4 +1,17 @@
 const pool = require("../config/db")
+const DeviceDetector = require('node-device-detector');
+const DeviceHelper = require('node-device-detector/helper');
+
+const detector = new DeviceDetector({
+    clientIndexes: true,
+    deviceIndexes: true,
+    osIndexes: true,
+    deviceAliasCode: false,
+    deviceTrusted: false,
+    deviceInfo: false,
+    maxUserAgentSize: 500,
+});
+
 
 const addCustomer = async (req,res)=>{
     try{
@@ -23,6 +36,15 @@ const addCustomer = async (req,res)=>{
 
 const getCustomer = async (req,res)=>{
     try{
+        const userAgent = req.headers["user-agent"]
+        const result = detector.detect(userAgent);
+        console.log(result);
+        
+        console.log(DeviceHelper.isAndroid(result));
+        console.log(DeviceHelper.isBrowser(result));
+        console.log(DeviceHelper.isTablet(result));
+        console.log(DeviceHelper.isMobile(result));
+        
         const getData = await pool.query(`select * from customers`)
         res.status(200).json({
             statusCode: 200,
