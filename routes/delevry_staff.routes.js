@@ -1,9 +1,17 @@
-const { addDelevry_staff, getDelevry_staff, getOneDelevry } = require("../controllers/delevry_staff.controller")
+const {
+  addDelevry_staff,
+  getDelevry_staff,
+  getOneDelevry,
+  updateDelevryS,
+  delDelivrS,
+} = require("../controllers/delevry_staff.controller");
 
-const router = require("express").Router()
+const router = require("express").Router();
 
-router.post("/", addDelevry_staff)
-router.get("/", getDelevry_staff)
-router.get("/:id", getOneDelevry)
+router.post("/", addDelevry_staff);
+router.get("/", getDelevry_staff);
+router.get("/:id", getOneDelevry);
+router.patch("/:id", updateDelevryS);
+router.delete("/:id", delDelivrS);
 
-module.exports = router
+module.exports = router;

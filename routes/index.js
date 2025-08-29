@@ -4,12 +4,17 @@ const regionRouter = require("./region.routes")
 const water_productsRouter = require("./water_products.routes")
 const addresRouter = require("./addres.routes")
 const delevry_staffRouter = require("./delevry_staff.routes")
-
+const ordersRouter = require("./orders.routes")
+const paymentRouter = require("./payment.routes")
+const order_itemsRouter = require("./order_items.routes")
 
 router.use("/customer", customerRoutes)
 router.use("/region", regionRouter)
 router.use("/water_products", water_productsRouter)
 router.use("/addres", addresRouter)
 router.use("/delevry", delevry_staffRouter)
+router.use("/orders", ordersRouter)
+router.use("/payment", paymentRouter)
+router.use("/order_items", order_itemsRouter)
 
 module.exports = router 
